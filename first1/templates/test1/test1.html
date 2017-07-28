@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    p {
+      color: red;
+      font-size: x-large;
+    }
+
+    /* Comment */
+    h2.ugly {
+      background-color: #4a4bff;
+    }
+
+  </style>
+
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function main() {
+
+      // Commnet!
+      console.log('Hello world!');
+      title = window.document.getElementById('title');
+      title.style.color = 'blue';
+
+      let xhr = new XMLHttpRequest();
+      xhr.open('GET', 'http://toolset.local:8000/en/plantsecure/apim/e/canary/');
+      xhr.send(null);
+
+      xhr.onreadystatechange = function () {
+        let DONE = 4; // readyState 4 means the request is done.
+        let OK = 200; // status 200 is a successful return.
+        if (xhr.readyState === DONE) {
+          if (xhr.status === OK) {
+            let response = JSON.parse(xhr.responseText);
+            let email = window.document.getElementById('email');
+
+            email.innerHTML = response.email;
+            console.log(xhr.responseText); // 'This is the returned text.'
+          }
+        } else {
+          console.log('Error: ' + xhr.status); // An error occurred during the request.
+        }
+      }
+    });
+  </script>
+
+</head>
+
+<body>
+
+<div class="content">
+  <h1 id="title">Heading stuff!</h1>
+
+  <!--  <p>Hello person, this is your email: <span id="email">waiting...</span></p> -->
+  <p>Hello person, this is your email: <span id="email"><img src="http://i.stack.imgur.com/MnyxU.gif" width=20px;
+                                                             alt=""></span></p>
+</div>
+
+</body>
+</html>
